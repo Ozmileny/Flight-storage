@@ -8,7 +8,7 @@ void test_LinearFlight()
 	LinearFlight fl2("Moscow", 2, 15, "Perm", 2, 17, "SU7395");
 	LinearFlight fl3("Moscow", 2, 13, "Perm", 2, 16, "SU7396");
 
-	// проверяем, как создается обратный рейс
+	// проверяем, верно ли создается обратный рейс
 	LinearFlight fl4 = fl1;
 	fl4.reverse();
 	assert(fl4.get_dep_point() == "Perm");
