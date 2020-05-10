@@ -4,45 +4,40 @@
 
 void LinearFlight::reverse()
 {
-	std::string s = dep_point;
-	dep_point = arr_point;
-	arr_point = s;
-}
-int LinearFlight::get_dep_day() const
-{
-	return dep_day;
+	arr_point.swap(dep_point);
 }
 
-int LinearFlight::get_dep_time() const
+
+int LinearFlight::get_dep_time()
 {
 	return dep_time;
 }
 
-int LinearFlight::get_arr_day() const
+vector <string> LinearFlight::get_last_point()
 {
-	return arr_day;
+	vector <string> list;
+	list.push_back(arr_point);
+	return list;
 }
 
-int LinearFlight::get_arr_time() const
-{
-	return arr_time;
-}
-
-std::string LinearFlight::get_dep_point() const
+std::string LinearFlight::get_fst_point()
 {
 	return dep_point;
 }
 
-std::string LinearFlight::get_arr_point() const
+void LinearFlight::print()
 {
-	return arr_point;
+	std::cout << get_plane_ID() << " | " << dep_time << " - " << arr_time << " | " << dep_point << " --> " << arr_point <<  " | day " << dep_day << "\n";
 }
 
-std::string LinearFlight::get_plane_ID() const
+int LinearFlight::get_full_time()
 {
-	return plane_ID;
+	int x;
+	if (dep_day == arr_day)
+		x = arr_time - dep_time;
+	else x = 24 - dep_time + arr_time;
+	return x;
 }
-
 
 bool LinearFlight::operator==(LinearFlight& left)
 {
