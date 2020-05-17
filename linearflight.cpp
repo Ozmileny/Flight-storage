@@ -27,7 +27,7 @@ std::string LinearFlight::get_fst_point()
 
 void LinearFlight::print()
 {
-	std::cout << get_plane_ID() << " | " << dep_time << " - " << arr_time << " | " << dep_point << " --> " << arr_point <<  " | day " << dep_day << "\n";
+	printf("%s | %d - %d | %s --> %s | day %d \n", get_plane_ID().c_str(), dep_time, arr_time, dep_point.c_str(), arr_point.c_str(), dep_day);
 }
 
 int LinearFlight::get_full_time()

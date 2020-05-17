@@ -33,10 +33,10 @@ vector <string> CyclicFlight::get_last_point()
 
 void CyclicFlight::print()
 {
-	std::cout << get_plane_ID();
+	printf("%s", get_plane_ID().c_str());
 	for (int i = 0; i < dep_points.size() - 1; ++i)
 	{
-		std::cout << " | " << dep_times[i] << " - " << arr_times[i+1] << " | " << dep_points[i] << " --> " << dep_points[i+1];
+		printf(" | %d - %d | %s --> %s", dep_times[i], arr_times[i], dep_points[i].c_str(), dep_points[i+1].c_str());
 	}
-	std::cout << " | day " << dep_days[0] << "\n";
+	printf(" | day %d \n", dep_days[0]);
 }
