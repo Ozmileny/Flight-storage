@@ -30,6 +30,8 @@ void test_LinearFlight()
 	assert(!(fl2 < fl1));
 	// сравниваем рейсы с разным временем (f1 == f2)
 	assert(!(fl1 < fl3));
+	
+	std::cout << fl1.c_print() << "\n";
 }
 
 void test_CyclicFlight()
@@ -48,6 +50,8 @@ void test_CyclicFlight()
 	assert(flight.get_last_point() == points);
 	assert(flight.get_full_time() > 0);
 	assert(flight.get_plane_ID() == "SU7395");
+	std::cout << flight.c_print() << "\n";
+
 }
 
 void test_Point()
@@ -63,6 +67,7 @@ void test_Point()
 	assert(point.get_connected_points().size() == 4);
 	assert(point.get_max_time(3) == 4);
 	assert(point.get_min_time(3) == 2);
+	assert(point.get_name() == "Moscow");
 }
 
 vector <Point> create_point_set()
@@ -147,6 +152,8 @@ void test_Timetable()
 		ttable.add_flight(f_list[i]);
 	ttable.print_timetable();
 
+
+
 	std::cout << "Flight time for SU7393 is " << ttable.count_flight_time("SU7393") << " hours \n\n";
 
 	std::cout << "Lets find flight Moscow -> London after 20 \n";
@@ -163,6 +170,9 @@ void test_Timetable()
 	else
 		rez->print();
 
+	std::cout << "C-print: \n";
+	std::cout << ttable.c_print() << "\n";
+	std::cout << ttable.c_print().size() << "\n";
 
 
 }

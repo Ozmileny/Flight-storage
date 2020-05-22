@@ -29,6 +29,7 @@ public:
 	void print_points();
 	int check(shared_ptr<Flight> f);
 	shared_ptr<Flight> find_flight(int dtime, string fst_point, string last_point);
+	string c_print();
 };
 
 #endif

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include<cstdio>
 
 #include"linearflight.h"
@@ -47,4 +48,11 @@ bool LinearFlight::operator==(LinearFlight& left)
 bool LinearFlight::operator<(LinearFlight& left)
 {
 	return  dep_time < left.dep_time;
+};
+
+string LinearFlight::c_print()
+{
+	string str;
+	str = get_plane_ID() + " | " + std::to_string(dep_time) + " - " + std::to_string(arr_time) + " | " + dep_point + " --> " + arr_point + " | day " + std::to_string(dep_day) + "\n";
+	return str;
 };

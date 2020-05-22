@@ -31,9 +31,10 @@ extern "C"
 		strncpy(id, lf->get_plane_ID().c_str(), max_id_len);
 	}
 
-	void LF_print(LinearFlight* lf)
+	void LF_print(LinearFlight* lf, char* str, int max_str_len)
 	{
-		lf->print();
+		string s = lf->c_print();
+		strncpy(str, s.c_str(), max_str_len);
 	}
 
 	void LF_last_point(LinearFlight* lf, char* last_p, int max_last_p_len)
@@ -41,6 +42,11 @@ extern "C"
 		string point = lf->get_last_point().back();
 		strncpy(last_p, point.c_str(), max_last_p_len);
 	}
+	void del_LF(LinearFlight* lf)
+	{
+		delete lf;
+	}
+
 	
 	//block of vector<int>
 	vector<int>* create_int_vector()
@@ -109,4 +115,48 @@ extern "C"
 		vector<string>* last = &(lf->get_last_point());
 		return last;
 	}
+	void del_CF(CyclicFlight* cf)
+	{
+		delete cf;
+	}
+
+	//block of Point functions
+	Point* create_P(char* name, vector<string>* con_points, vector<int>* max_time, vector<int>* min_time)
+	{
+		return new Point(name, *con_points, *max_time, *min_time);
+	}
+
+	void P_name(Point* p, char* name, int max_name_len)
+	{
+		strncpy(name, p->get_name().c_str(), max_name_len);
+	}
+
+	//blocf of Timetable functions
+	Timetable* create_T()
+	{
+		return new Timetable();
+	}
+	void T_add_point(Timetable* t, Point* p)
+	{
+		t->add_point(*p);
+	}
+
+	void T_add_lf(Timetable* t, LinearFlight* lf)
+	{
+		auto ptr = shared_ptr<Flight>(lf);
+		t->add_flight(ptr);
+	}
+
+	void T_add_cf(Timetable* t, CyclicFlight* cf)
+	{
+		auto ptr = shared_ptr<Flight>(cf);
+		t->add_flight(ptr);
+	}
+
+	void T_print(Timetable* t, char* str, int max_str_len)
+	{
+		string s = t->c_print();
+		strncpy(str, s.c_str(), max_str_len);
+	}
+
 }

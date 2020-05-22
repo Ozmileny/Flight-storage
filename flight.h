@@ -23,6 +23,7 @@ public:
 	virtual string get_fst_point() = 0;
 	virtual vector <string> get_last_point() = 0;
 	virtual void print() = 0;
+	virtual string c_print() = 0;
 	virtual ~Flight() {}
 };
 

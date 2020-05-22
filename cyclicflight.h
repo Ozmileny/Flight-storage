@@ -27,6 +27,7 @@ public:
 	int get_full_time() override;
 	string get_fst_point() override;
 	vector <string> get_last_point() override;
+	string c_print() override;
 	void print() override;
 };
 

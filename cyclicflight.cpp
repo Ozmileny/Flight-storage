@@ -1,3 +1,4 @@
+#include "pch.h"
 #include<cstdio>
 
 #include"cyclicflight.h"
@@ -40,3 +41,14 @@ void CyclicFlight::print()
 	}
 	printf(" | day %d \n", dep_days[0]);
 }
+
+string CyclicFlight::c_print()
+{
+	string str = get_plane_ID();
+	for (int i = 0; i < dep_points.size() - 1; ++i)
+	{
+		str += " | " + std::to_string(dep_times[i]) + " - " + std::to_string(arr_times[i]) + " | " + dep_points[i] + " --> " + dep_points[i + 1];
+	}
+	str += " | day " + std::to_string(dep_days[0]) + "\n";
+	return str;
+};

@@ -8,7 +8,7 @@ using std::vector;
 
 #include "flight.h"
 
-class LinearFlight: public Flight
+class LinearFlight : public Flight
 {
 	string dep_point;
 	int dep_day;
@@ -20,7 +20,7 @@ class LinearFlight: public Flight
 
 public:
 	LinearFlight(const string& dp, int dd, int dt, const string& ap, int ad, int at, const string& id)
-		:dep_point(dp) ,dep_day(dd), dep_time(dt), arr_point(ap), arr_day(ad), arr_time(at), Flight(id) {}
+		:dep_point(dp), dep_day(dd), dep_time(dt), arr_point(ap), arr_day(ad), arr_time(at), Flight(id) {}
 
 	void reverse();
 
@@ -32,6 +32,7 @@ public:
 
 	bool operator==(LinearFlight& left);
 	bool operator<(LinearFlight& left);
+	string c_print();
 };
 
 #endif

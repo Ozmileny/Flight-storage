@@ -14,9 +14,12 @@ lib.create_LF.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.c_int, ctypes.c_
 lib.LF_fst_point.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_size_t]
 lib.LF_last_point.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_size_t]
 lib.CF_fst_point.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_size_t]
+lib.LF_print.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_size_t]
+lib.T_print.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_size_t]
+
 
 #create test string place
-name = ctypes.create_string_buffer(20)
+name = ctypes.create_string_buffer(200)
 last_point = ctypes.create_string_buffer(20)
 name1 = ctypes.create_string_buffer(20)
 fst_point = ctypes.create_string_buffer(100)
@@ -26,12 +29,15 @@ flight1 = lib.create_LF(city1, 2, 13, city2, 2, 19, ID1)
 time = lib.LF_dep_time(flight1)
 f_time = lib.LF_full_time(flight1)
 print('LinearFlight test: ', end='')
-print (time, f_time, end = " ")
+print (time, f_time)
 
-lib.LF_fst_point(flight1, name, ctypes.sizeof(name))
+lib.LF_fst_point(flight1, name1, ctypes.sizeof(name1))
 lib.LF_last_point(flight1, last_point, ctypes.sizeof(last_point))
+lib.LF_print(flight1, name, ctypes.sizeof(name))
 
-print (name.value.decode('utf-8'), end = " ")
+print(name.value.decode('utf-8'))
+
+print (name1.value.decode('utf-8'), end = " ")
 print (last_point.value.decode('utf-8'))
 
 #vector<int> test
@@ -57,3 +63,20 @@ lib.CF_fst_point(cflight, fst_point, ctypes.sizeof(fst_point))
 print ("CyclicFlight test: " + fst_point.value.decode('utf-8'), end=" ")
 lib.CF_ID(cflight, name1, ctypes.sizeof(name1))
 print(name1.value.decode('utf-8'))
+
+#Point test
+point1 = lib.create_P(city2, svec, ivec, ivec)
+lib.P_name(point1, name, ctypes.sizeof(name))
+print("Point test: " + name.value.decode('utf-8'))
+
+#Timetable test
+ttable = lib.create_T()
+lib.T_add_point(ttable, point1)
+lib.T_add_lf(ttable, flight1)
+lib.T_add_cf(ttable, cflight)
+lib.T_print(ttable, name, ctypes.sizeof(name))
+print("Timetable: \n" )
+print(name.value.decode('utf-8'))
+
+
+

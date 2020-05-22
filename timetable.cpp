@@ -1,3 +1,4 @@
+#include "pch.h"
 #include<cstdio>
 
 #include"timetable.h"
@@ -139,4 +140,14 @@ shared_ptr<Flight> Timetable::find_flight(int dtime, string fst_point, string la
 		it++;
 	}
 	return rezult;
+}
+
+string Timetable::c_print()
+{
+	string s;
+	for (forward_list<shared_ptr<Flight>>::iterator it = flights.begin(); it != flights.end(); ++it)
+	{
+		s += (*it)->c_print();
+	}
+	return s;
 }
